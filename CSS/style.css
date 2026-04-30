@@ -1,0 +1,213 @@
+:root {
+    --bg-color: #fdf6e3;
+    --text-color: #3b312a;
+    --panel-bg: #f4ebd8;
+    --border-color: #d3c4a9;
+    --accent-color: #8b5a2b;
+    --chart-grid: rgba(59, 49, 42, 0.2);
+    --input-bg: #fffbf0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --panel-bg: #1e1e1e;
+    --border-color: #333;
+    --accent-color: #a855f7;
+    --chart-grid: rgba(224, 224, 224, 0.1);
+    --input-bg: #2c2c2c;
+}
+
+* { 
+    box-sizing: border-box; 
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    padding-top: 60px;
+}
+
+header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+h1, h2, h3 { 
+    color: var(--accent-color); 
+    margin-top: 0;
+}
+
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    background-color: var(--panel-bg);
+    padding: 8px 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 1px solid var(--border-color);
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--border-color);
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.slider .icon {
+    font-size: 16px;
+    line-height: 1;
+    z-index: 1;
+    user-select: none;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider { background-color: var(--accent-color); }
+input:checked + .slider:before { transform: translateX(30px); }
+
+.lesson-section {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.chart-container { 
+    position: relative; 
+    height: 350px; 
+    width: 100%; 
+    margin-top: 20px; 
+}
+
+.math-block {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    border: 1px dashed var(--accent-color);
+    overflow-x: auto;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.control-group { display: flex; flex-direction: column; }
+
+.control-group label { 
+    font-weight: bold; 
+    margin-bottom: 5px; 
+    font-size: 0.9rem; 
+}
+
+.control-group input {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+}
+.control-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.calc-btn {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+[data-theme="dark"] .calc-btn { color: #fff; }
+.calc-btn:hover { opacity: 0.9; }
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.highlight-output {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 600px) {
+    .container { padding-top: 80px; }
+    .chart-container { height: 250px; }
+    .theme-toggle-container {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+    }
+}

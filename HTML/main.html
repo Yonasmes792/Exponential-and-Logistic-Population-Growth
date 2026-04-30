@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacterial Growth: Exponential & Logistic Models</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+<div class="theme-toggle-container">
+    <span style="font-weight: bold; font-size: 0.9rem;">Theme</span>
+    <label class="theme-switch" for="themeToggle">
+        <input type="checkbox" id="themeToggle">
+        <div class="slider round">
+            <span class="icon moon">🌙</span>
+            <span class="icon sun">☀️</span>
+        </div>
+    </label>
+</div>
+
+<div class="container">
+    <header>
+        <h1>Microbial Population Dynamics</h1>
+        <p>Mathematical Models of Bacterial Growth</p>
+    </header>
+
+    <section class="lesson-section">
+        <h2>1. Exponential Growth (Unrestricted Phase)</h2>
+        <p>When a bacterial colony is inoculated into a fresh, nutrient-rich medium with <em>unlimited resources</em>, it enters the logarithmic (log) phase. During this period, cells undergo rapid binary fission. Because there are no environmental constraints, the growth rate is strictly proportional to the current population.</p>
+        
+        <div class="math-block" id="math-exp">
+            P(t) = P_0 \cdot e^{kt}
+        </div>
+
+        <h3>Interactive Simulation</h3>
+        <p>You can adjust the parameters below and then click <strong>Calculate</strong> to see how the population explodes over time. The inputs include the <strong>Initial Population (<i>P<sub>0</sub></i>)</strong>, the <strong>Growth Rate (<i>k</i>)</strong>, and the specific <strong>Time (<i>t</i>)</strong> to evaluate.</p>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Initial Population (P₀)</label>
+                <input type="number" id="exp-P0" value="10" step="1">
+            </div>
+            <div class="control-group">
+                <label>Growth Rate (k)</label>
+                <input type="number" id="exp-k" value="0.15" step="0.01">
+            </div>
+            <div class="control-group">
+                <label>Time to evaluate (t)</label>
+                <input type="number" id="exp-t" value="20" step="1">
+            </div>
+        </div>
+        
+        <button class="calc-btn" id="expCalcBtn">Calculate Exponential Growth</button>
+        
+        <div class="result-box">
+            <strong>Calculated Population at time <span id="exp-out-t">20</span>:</strong> 
+            <span id="exp-calc-output" class="highlight-output">--</span> cells
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="exponentialChart"></canvas>
+        </div>
+    </section>
+
+    <section class="lesson-section">
+        <h2>2. The Logistic Equation (Resource Depletion)</h2>
+        <p>In reality, exponential growth cannot continue indefinitely. As the colony expands, it inevitably faces <em>nutrient depletion</em>, space limitations, and the accumulation of toxic metabolic waste. Growth begins to slow, eventually reaching a state of <em>colony saturation</em> known as the <em>stationary phase</em>. The population stabilizes at the environment's maximum capacity.</p>
+        
+        <div class="math-block" id="math-logistic">
+            P(t) = \frac{M}{1 + K e^{-kt}}
+        </div>
+
+        <h3>Interactive Simulation</h3>
+        <p>Adjust the parameters and click <strong>Calculate</strong> to see how environmental constraints alter the S-curve (sigmoid curve). The formula uses three main parameters: <strong>Maximum Population (<i>M</i>)</strong>, the <strong>Initial Value Constant (<i>K</i>)</strong>, and the <strong>Growth Rate (<i>k</i>)</strong>. You can also specify a <strong>Time (<i>t</i>)</strong> to determine the exact population at that moment.</p>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Max Population (M)</label>
+                <input type="number" id="log-M" value="1000" step="10">
+            </div>
+            <div class="control-group">
+                <label>Constant (K)</label>
+                <input type="number" id="log-K" value="99" step="1">
+            </div>
+            <div class="control-group">
+                <label>Growth Rate (k)</label>
+                <input type="number" id="log-k" value="0.15" step="0.01">
+            </div>
+            <div class="control-group">
+                <label>Time to evaluate (t)</label>
+                <input type="number" id="log-t" value="30" step="1">
+            </div>
+        </div>
+        
+        <button class="calc-btn" id="logCalcBtn">Calculate Logistic Growth</button>
+        
+        <div class="result-box">
+            <strong>Calculated Population at time <span id="log-out-t">30</span>:</strong> 
+            <span id="log-calc-output" class="highlight-output">--</span> cells
+        </div>
+
+        <div class="chart-container">
+            <canvas id="logisticChart"></canvas>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="../JS/script.js"></script>
+</body>
+</html>
